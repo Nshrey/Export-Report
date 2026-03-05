@@ -135,8 +135,15 @@ else:
     ax.text(0, 0.1, f"{total:,}", ha="center", va="center",
             fontsize=22, fontweight="bold")
 
-    ax.text(0, -0.1, "Exports\n(7 days)",
-            ha="center", va="center", fontsize=11)
+    date_label = f"{start_7} → {today}"
+
+    ax.text(
+    0, -0.1,
+    f"Exports\n{date_label}",
+    ha="center",
+    va="center",
+    fontsize=11
+    )
 
     legend_labels = [
         f"{row.Status} — {row.Count:,} ({row.Count/total:.1%})"
@@ -154,6 +161,18 @@ else:
 
     st.pyplot(fig)
 
+    import io
+
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", dpi=300, bbox_inches="tight")
+    buf.seek(0)
+
+    st.download_button(
+        label="⬇ Download Chart as PNG",
+        data=buf,
+        file_name="export_status_chart.png",
+        mime="image/png"
+    )
 # Table
 st.markdown("## 📋 Export Details")
 st.dataframe(
