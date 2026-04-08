@@ -188,3 +188,10 @@ st.download_button(
     file_name="exportseries_last_7_days.csv",
     mime="text/csv",
 )
+st.markdown("---")
+st.markdown(
+    "<center style='color: gray; font-size: 14px;'>"
+    "Created by <b>Shrey & Jarvis</b> 🤝<br>" 
+    "</center>",
+    unsafe_allow_html=True
+)
